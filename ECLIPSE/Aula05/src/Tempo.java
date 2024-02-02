@@ -3,7 +3,7 @@ public class Tempo {
 	private int hora;
 	private int minuto;
 	private int segundos;
-	
+
 	public Tempo(int hora, int minuto, int segundos) {
 		if(hora < 0 || hora >60)
 			this.hora = 0;
