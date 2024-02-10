@@ -6,6 +6,7 @@ public class ContaPoupanca extends ContaBancaria{
 		super(cpf, nro_conta);
 		taxa_rendimento_mensal = 1.10f;
 	}
+	
 	public void CalcularNovoSaldo() {
 		setSaldo(getSaldo() * taxa_rendimento_mensal);
 	}
