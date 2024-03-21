@@ -1,0 +1,159 @@
+package pratica07;
+
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import java.awt.Toolkit;
+import java.awt.SystemColor;
+import java.awt.Window.Type;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+import javax.swing.*;
+import java.awt.*;
+
+
+
+public class teste {
+
+    private JFrame frmCalculaMdcmmc;
+    private JLabel lblOutput;
+    private static int conta = 1;
+    private static int a = 1;
+    private static int b = 1;
+    private static int c = 1;
+    private JButton btnNewButton;
+    private JTextField txtNum;
+    private JTextField txtNum_1;
+    private JButton btnUpdate_1_1_2;
+
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    teste window = new teste();
+                    window.frmCalculaMdcmmc.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        
+        
+        
+    }
+
+    /**
+     * Create the application.
+     */
+    public teste() {
+        initialize();
+        
+    }
+
+    /**
+     * Initialize the contents of the frame.
+     */
+    private void initialize() {
+        frmCalculaMdcmmc = new JFrame();
+        frmCalculaMdcmmc.setTitle("Calcula MDC/MMC");
+        frmCalculaMdcmmc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Usando BorderLayout para organizar os componentes
+        frmCalculaMdcmmc.getContentPane().setLayout(new BorderLayout());
+
+        // Instanciação e configuração do JLabel
+        lblOutput = new JLabel("");
+        lblOutput.setHorizontalAlignment(SwingConstants.CENTER);
+        lblOutput.setFont(new Font("Old English Text MT", Font.BOLD, 35));
+        frmCalculaMdcmmc.getContentPane().add(lblOutput, BorderLayout.CENTER);
+
+        // Cria outro botao
+        btnNewButton = new JButton("zerar");
+        btnNewButton.setForeground(Color.LIGHT_GRAY);
+        btnNewButton.setBackground(Color.BLACK);
+        btnNewButton.setFont(new Font("JetBrains Mono NL Thin", Font.BOLD, 14));
+        frmCalculaMdcmmc.getContentPane().add(btnNewButton, BorderLayout.NORTH);
+
+        // Adiciona um ActionListener ao botão
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Imprimir "1" na janela quando o botão for clicado
+                lblOutput.setText(String.valueOf(conta = 0));
+            }
+        });
+
+        // Cria campos de texto e botão "Inserir"
+        JPanel panel = new JPanel();
+        panel.setLayout(new FlowLayout());
+        txtNum = new JTextField(10);
+        txtNum_1 = new JTextField(10);
+        JButton btnUpdate_1 = new JButton("Inserir");
+        panel.add(txtNum);
+        panel.add(txtNum_1);
+        panel.add(btnUpdate_1);
+        frmCalculaMdcmmc.getContentPane().add(panel, BorderLayout.SOUTH);
+
+        // Adiciona um ActionListener ao botão "Inserir"
+        btnUpdate_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Atualiza os valores de a e b com os valores inseridos nos campos de texto
+                try {
+                    a = Integer.parseInt(txtNum.getText());
+                    b = Integer.parseInt(txtNum_1.getText());
+                } catch (NumberFormatException ex) {
+                    // Caso a entrada não seja um número, não faz nada
+                }
+            }
+        });
+
+        // Botões "Calcula MMC" e "Calcula MDC"
+        JPanel buttonPanel = new JPanel();
+        JButton btnUpdate_1_1_1 = new JButton("Calcula MMC");
+        JButton btnUpdate_1_1_2 = new JButton("Calcula MDC");
+        buttonPanel.add(btnUpdate_1_1_1);
+        buttonPanel.add(btnUpdate_1_1_2);
+        frmCalculaMdcmmc.getContentPane().add(buttonPanel, BorderLayout.EAST);
+
+        // Adiciona ActionListeners aos botões "Calcula MMC" e "Calcula MDC"
+        btnUpdate_1_1_1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Calcula e exibe o MMC
+                conta = mmc(a, b);
+                lblOutput.setText(String.valueOf(conta));
+            }
+        });
+
+        btnUpdate_1_1_2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Calcula e exibe o MDC
+                conta = mdc(a, b);
+                lblOutput.setText(String.valueOf(conta));
+            }
+        });
+
+        frmCalculaMdcmmc.pack(); // Redimensiona a janela para se ajustar ao conteúdo
+        frmCalculaMdcmmc.setLocationRelativeTo(null); // Centraliza a janela na tela
+    }
+    
+    
+    public static int mdc(int a, int b) {
+        if(b==0) return a;
+    	return mdc(b,a%b);
+    }
+    
+    public static int mmc(int a, int b) {
+        return (a*b)/mdc(a,b);
+    }
+    
+}

@@ -1,0 +1,91 @@
+package pratica07;
+
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Color;
+import java.awt.Font;
+
+public class teste {
+
+    private JFrame frame;
+    private JButton btnPrint;
+    private JLabel lblOutput;
+    private static int conta = 1;
+    private JButton btnNewButton;
+
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    teste window = new teste();
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
+     * Create the application.
+     */
+    public teste() {
+        initialize();
+    }
+
+    /**
+     * Initialize the contents of the frame.
+     */
+    private void initialize() {
+        frame = new JFrame();
+        frame.setBounds(100, 100, 450, 300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
+
+        // Instanciação e configuração do botão
+        btnPrint = new JButton("Incrementa numero");
+        btnPrint.setFont(new Font("Papyrus", Font.PLAIN, 17));
+        btnPrint.setBounds(36, 32, 228, 47);
+        frame.getContentPane().add(btnPrint);
+
+        // Adicionando ouvinte de evento ao botão
+        btnPrint.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // soma "1" na jlabel quando o botão for clicado
+            	lblOutput.setText(String.valueOf(conta++));
+            }
+        });
+        
+     // Instanciação e configuração do JLabel
+        lblOutput = new JLabel("");
+        lblOutput.setFont(new Font("Algerian", Font.PLAIN, 18));
+        lblOutput.setBackground(new Color(0, 0, 255));
+        lblOutput.setBounds(113, 152, 203, 100);
+        frame.getContentPane().add(lblOutput);
+        
+        //Cria outro botao
+        btnNewButton = new JButton("zerar");
+        btnNewButton.setForeground(Color.LIGHT_GRAY);
+        btnNewButton.setBackground(new Color(0, 0, 255));
+        btnNewButton.setFont(new Font("Papyrus", Font.PLAIN, 18));
+        btnNewButton.setBounds(326, 27, 89, 56);
+        frame.getContentPane().add(btnNewButton);
+        //Chamo ouvinte para ação
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Imprimir "1" na janela quando o botão for clicado
+            	lblOutput.setText(String.valueOf(conta=0));
+            }
+        });
+        
+    }
+}

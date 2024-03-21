@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+C:\Users\MMS-05\Desktop\UFU PAPIRO\PERIODO 3\POO\POO-JAVA\pratica07\.metadata\.plugins\org.eclipse.jdt.core
+1884892212.index
+3413725848.index
+1865797976.index
